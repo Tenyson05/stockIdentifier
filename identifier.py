@@ -18,7 +18,8 @@ WIN_LIN = "Linux"
 class Methods(str, Enum):
 	GET_SELENIUM = "GET_SELENIUM"
 	GET_URLLIB = "GET_URLLIB"
-	GET_API = "GET_API"
+	# Couldnt get this to work, ignore for now
+	# GET_API = "GET_API"
 
 load_dotenv()
 USE_SELENIUM = False
@@ -27,6 +28,11 @@ ALERT_DELAY = int(getenv('ALERT_DELAY'))
 MIN_DELAY = int(getenv('MIN_DELAY'))
 MAX_DELAY = int(getenv('MAX_DELAY'))
 OPEN_WEB_BROWSER = getenv('OPEN_WEB_BROWSER') == 'true'
+USE_TWILIO = False
+TWILIO_TO_NUM = getenv('TWILIO_TO_NUM')
+TWILIO_FROM_NUM = getenv('TWILIO_FROM_NUM')
+TWILIO_SID = getenv('TWILIO_SID')
+TWILIO_AUTH = getenv('TWILIO_AUTH')
 
 #get the links from a json file
 with open('websites.json', 'r') as f:
@@ -61,6 +67,7 @@ def alert(site):
 	if OPEN_WEB_BROWSER:
 		webbrowser.open(site.get('url'), new=1)
 	os_notification("{} IN STOCK".format(product), site.get('url'))
+	send_sms(site.get('url'))
 	sleep(ALERT_DELAY)
 
 def os_notification(title, text):
@@ -101,9 +108,23 @@ def test():
 		if sys.argv[1] == 'test':
 			alert(sites[0])
 			print("Test complete, if you got this bro")
+			
 			return True
 	except:
 		return False
+
+#twilio setup
+if TWILIO_TO_NUM and TWILIO_FROM_NUM and TWILIO_SID and TWILIO_AUTH:
+	USE_TWILIO = False
+	print("Enabling Twilio... ", end='')
+	from twilio.rest import Client
+	
+	client = Client(TWILIO_SID, TWILIO_AUTH)
+	print("\nOnline and ready to message! *_+")
+
+def send_sms(url):
+	if USE_TWILIO:
+		client.messages.create(to=TWILIO_TO_NUM, from_=TWILIO_FROM_NUM, body=url)
 
 def main():
 	search_count = 0
@@ -117,7 +138,7 @@ def main():
 		search_count += 1
 		for site in sites:
 			if site.get("enabled"):
-				print("\tCHecking {} ...".format(site.get('name')))
+				print("\tChecking {} ...".format(site.get('name')))
 
 				try:
 					if site.get('method') == Methods.GET_SELENIUM:
