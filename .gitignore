@@ -1,0 +1,6 @@
+.env
+geckodriver.log
+notifier-test.py
+geckodriver
+geckodriver.exe
+.vscode/

@@ -1,0 +1,27 @@
+  
+[
+	{
+	  "url": "https://www.newegg.com/p/pl?d=ryzen+7+5800x++combo",
+	  "keyword": "Add to cart",
+	  "alert": true,
+	  "method": "GET_URLLIB",
+	  "name": "5800",
+	  "enabled": true
+	},
+	{
+		"url": "https://www.newegg.com/p/pl?d=ryzen+7+5800x&LeftPriceRange=400+800&N=8000",
+		"keyword": "Add to cart",
+		"alert": true,
+		"method": "GET_URLLIB",
+		"name": "5800-non combo",
+		"enabled": true
+	},	
+	{
+	  "url": "https://www.amazon.com/DANIPEW-Sand-Man-Cotton-Performance-T-Shirt/dp/B0815XFSGK?ref_=ast_sto_dp",
+	  "keyword": ">Add to Cart<",
+	  "alert": true,
+	  "method": "GET_URLLIB",
+	  "name": "Amazon 5800",
+	  "enabled": true
+	}
+  ]
