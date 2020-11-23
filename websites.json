@@ -1,27 +1,79 @@
   
 [
 	{
-	  "url": "https://www.newegg.com/p/pl?d=ryzen+7+5800x++combo",
+	  "url": "https://www.newegg.com/p/pl?d=ryzen+5000+combo&N=8000",
 	  "keyword": "Add to cart",
 	  "alert": true,
 	  "method": "GET_URLLIB",
-	  "name": "5800",
+	  "name": "Ryzen combo page 1",
 	  "enabled": true
 	},
 	{
-		"url": "https://www.newegg.com/p/pl?d=ryzen+7+5800x&LeftPriceRange=400+800&N=8000",
+		"url": "https://www.newegg.com/p/pl?d=ryzen+5000+combo&N=8000&page=2",
 		"keyword": "Add to cart",
 		"alert": true,
 		"method": "GET_URLLIB",
-		"name": "5800-non combo",
+		"name": "Ryzen combo page 2",
+		"enabled": true
+	},
+	{
+		"url": "https://www.newegg.com/p/pl?d=Ryzen+5000&N=50001028",
+		"keyword": "Add to cart",
+		"alert": true,
+		"method": "GET_URLLIB",
+		"name": "Ryzen 5000 line up",
 		"enabled": true
 	},	
 	{
-	  "url": "https://www.amazon.com/DANIPEW-Sand-Man-Cotton-Performance-T-Shirt/dp/B0815XFSGK?ref_=ast_sto_dp",
+		"url": "https://www.amazon.com/AMD-Ryzen-5600X-12-Thread-Processor/dp/B08166SLDF?ref_=ast_sto_dp",
+		"keyword": ">Add to Cart<",
+		"alert": true,
+		"method": "GET_URLLIB",
+		"name": "5600x on Amazon",
+		"enabled": true
+	},
+	{
+	  "url": "https://www.amazon.com/AMD-Ryzen-5800X-16-Thread-Processor/dp/B0815XFSGK?ref_=ast_sto_dp",
 	  "keyword": ">Add to Cart<",
 	  "alert": true,
 	  "method": "GET_URLLIB",
-	  "name": "Amazon 5800",
+	  "name": "5800x on Amazon",
 	  "enabled": true
+	},
+	{
+		"url": "https://www.amazon.com/AMD-Ryzen-5900X-24-Thread-Processor/dp/B08164VTWH?ref_=ast_sto_dp",
+		"keyword": ">Add to Cart<",
+		"alert": true,
+		"method": "GET_URLLIB",
+		"name": "5900x on Amazon",
+		"enabled": true
+	},
+	{
+		"url": "https://www.amazon.com/AMD-Ryzen-5950X-32-Thread-Processor/dp/B0815Y8J9N?ref_=ast_sto_dp",
+		"keyword": ">Add to Cart<",
+		"alert": true,
+		"method": "GET_URLLIB",
+		"name": "5950x on Amazon",
+		"enabled": true
+	},
+
+
+
+	{
+		"url": "https://www.newegg.com/p/pl?d=nvidia+rtx+3000&N=50001471%2050012150%2050001312%2050001315%2050001402%2050001314",
+		"keyword": ">Add to Cart<",
+		"alert": true,
+		"method": "GET_URLLIB",
+		"name": "Newegg 3000 Page 1",
+		"enabled": true
+	},
+	{
+		"url": "https://www.newegg.com/p/pl?d=nvidia+rtx+3000&N=50001471%2050012150%2050001312%2050001315%2050001402%2050001314&page=2",
+		"keyword": ">Add to Cart<",
+		"alert": true,
+		"method": "GET_URLLIB",
+		"name": "Newegg 3000 Page 2",
+		"enabled": true
 	}
+
   ]
