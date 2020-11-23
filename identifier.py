@@ -50,7 +50,6 @@ if WEBDRIVER_PATH:
 	options.headless = True
 	driver = webdriver.Firefox(options=options, executable_path=WEBDRIVER_PATH)
 	reload_count = 0
-	print("Done!")
 
 
 #Windows settings
@@ -64,10 +63,10 @@ def alert(site):
 	product = site.get('name')
 	print("{} IN STOCK".format(product))
 	print(site.get('url'))
+	send_sms(site.get('url'), site.get('name'))
 	if OPEN_WEB_BROWSER:
 		webbrowser.open(site.get('url'), new=1)
-	os_notification("{} IN STOCK".format(product), site.get('url'))
-	send_sms(site.get('url'))
+	os_notification("{} IN STOCK".format(product), site.get('url'))	
 	sleep(ALERT_DELAY)
 
 def os_notification(title, text):
@@ -115,16 +114,16 @@ def test():
 
 #twilio setup
 if TWILIO_TO_NUM and TWILIO_FROM_NUM and TWILIO_SID and TWILIO_AUTH:
-	USE_TWILIO = False
-	print("Enabling Twilio... ", end='')
+	USE_TWILIO = True
+	print("Enabling Twilio...\n ", end='')
 	from twilio.rest import Client
 	
 	client = Client(TWILIO_SID, TWILIO_AUTH)
-	print("\nOnline and ready to message! *_+")
 
-def send_sms(url):
+def send_sms(url, name):
 	if USE_TWILIO:
-		client.messages.create(to=TWILIO_TO_NUM, from_=TWILIO_FROM_NUM, body=url)
+		message = client.messages.create(to=TWILIO_TO_NUM, from_=TWILIO_FROM_NUM, body="{} is in stock: {}".format(name, url))
+		print("Twilio log: {}".format(message))
 
 def main():
 	search_count = 0
