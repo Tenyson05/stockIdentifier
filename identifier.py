@@ -45,10 +45,13 @@ if WEBDRIVER_PATH:
 	print("Starting Selenium... ")
 	from selenium import webdriver
 	from selenium.webdriver.firefox.options import Options
+	from selenium.webdriver.firefox.service import Service
+	
 
+	Service = Service(executable_path=WEBDRIVER_PATH)
 	options = Options()
 	options.headless = True
-	driver = webdriver.Firefox(options=options, executable_path=WEBDRIVER_PATH)
+	driver = webdriver.Firefox(options=options, service=Service)
 	reload_count = 0
 
 
@@ -63,7 +66,7 @@ def alert(site):
 	product = site.get('name')
 	print("{} IN STOCK".format(product))
 	print(site.get('url'))
-	send_sms(site.get('url'), site.get('name'))
+	#send_sms(site.get('url'), site.get('name'))
 	if OPEN_WEB_BROWSER:
 		webbrowser.open(site.get('url'), new=1)
 	os_notification("{} IN STOCK".format(product), site.get('url'))	
@@ -71,7 +74,7 @@ def alert(site):
 
 def os_notification(title, text):
 	if platform == WIN_PLT:
-		toast.show_toast(title, text, duration=5)
+		toast.show_toast(title, text, duration=10)
 	elif platform == WIN_LIN:
 		try:
 			system('notify-send "{}" "{}" -i {}'.format(title, text))
